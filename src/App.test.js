@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import { logRoles } from "@testing-library/dom";
 
 import { replaceCamelwithSpaces } from "./App";
 
@@ -22,6 +21,7 @@ test("button turns blue", () => {
 
   expect(colorButton).toHaveStyle({ "background-color": "blue" });
   expect(colorButton).toHaveTextContent("Change to red");
+  expect(colorButton).toHaveTextContent("Red");
 });
 
 test("disable button when checked", () => {
@@ -67,7 +67,7 @@ test("color to blue", () => {
   expect(button).toHaveStyle({ "background-color": "blue" });
 });
 
-describe("Spaces before camelcase ", () => {
+describe("Spaces before camelcase", () => {
   test("Works for no inner capital letter", () => {
     expect(replaceCamelwithSpaces("Red")).toBe("Red");
   });
