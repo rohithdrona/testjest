@@ -2,6 +2,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 
+export function replaceCamelwithSpaces(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, " $1");
+}
+
 function App() {
   let [color, setcolor] = useState("red");
   let anothercolor = color === "red" ? "blue" : "red";
@@ -10,7 +14,7 @@ function App() {
     <>
       <div>
         <button
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: disable ? "gray" : color }}
           onClick={() => {
             setcolor(anothercolor);
           }}
@@ -20,19 +24,8 @@ function App() {
         </button>
         <input
           type="checkbox"
-          onChange={(e) => {
-            setdisable(!disable);
-            if (color === "red" || color === "blue") {
-              setcolor("grey");
-            }
-            if (color === "grey") {
-              if (anothercolor === "red") {
-                setcolor("blue");
-              } else {
-                setcolor("red");
-              }
-            }
-          }}
+          defaultChecked={disable}
+          onChange={(e) => setdisable(e.target.checked)}
         />
       </div>
     </>
